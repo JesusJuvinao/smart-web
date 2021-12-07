@@ -49,6 +49,7 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 ca-certificate.crt
+package-lock.json
 /.history
 
 # vercel
