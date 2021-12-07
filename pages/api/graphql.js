@@ -1,5 +1,6 @@
 /* eslint-disable no-void */
 import Cors from 'micro-cors'
+import micro from 'micro';
 import { ApolloServer } from 'apollo-server-micro'
 import httpHeadersPlugin from 'apollo-server-plugin-http-headers'
 import typeDefs from '../api/lib/typeDefs'
@@ -51,11 +52,11 @@ const apolloServer = new ApolloServer({
         }
     }
 })
-const graphqlWithSubscriptionHandler = (req, res, next) => {
+const graphqlWithSubscriptionHandler = (req, res) => {
     cors()
     if (req.method === 'OPTIONS') {
         res.end()
-        return false
+        return
     }
     const oldOne = res.socket.server.apolloServer
     if (
@@ -71,9 +72,10 @@ const graphqlWithSubscriptionHandler = (req, res, next) => {
         // clients losts old connections, but clients are able to reconnect
         oldOne === null || oldOne === void 0 ? void 0 : oldOne.stop()
     }
-    return res.socket.server.apolloServerHandler(req, res, next)
+    return res.socket.server.apolloServerHandler(req, res)
 }
 export default graphqlWithSubscriptionHandler
+
 export const config = {
     api: {
         bodyParser: false
