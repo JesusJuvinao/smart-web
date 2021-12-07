@@ -1,1 +1,1 @@
-export const URL_BASE = 'http://localhost:3000/api/'
+export const URL_BASE = 'https://smart-web-2rm4jp097-jesusjuvinao.vercel.app/api/'
