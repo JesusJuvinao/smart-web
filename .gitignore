@@ -46,7 +46,6 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
-ca-certificate.crt
 package-lock.json
 /.history
 
